@@ -1,0 +1,23 @@
+blob:
+  server:
+    port: '6124'
+taskmanager:
+  memory:
+    flink:
+      size: 1024m
+  numberOfTaskSlots: '4'
+restart-strategy:
+  failure-rate:
+    delay: 1 s
+    max-failures-per-interval: 1
+    failure-rate-interval: 1 min
+  type: failure-rate
+jobmanager:
+  rpc:
+    address: jobmanager
+  memory:
+    flink:
+      size: 1024m
+query:
+  server:
+    port: '6125'
