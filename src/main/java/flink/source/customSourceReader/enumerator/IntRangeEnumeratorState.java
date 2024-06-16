@@ -1,4 +1,4 @@
-package flink.app.customSource.enumerator;
+package flink.source.customSourceReader.enumerator;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
@@ -11,14 +11,14 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import flink.app.customSource.split.IntRangeSplit;
+import flink.source.customSourceReader.split.IntRangeSplit;
 
-public class EnumeratorState implements Serializable {
+public class IntRangeEnumeratorState implements Serializable {
   private int currentValue;
   private List<IntRangeSplit> deadSplits = new ArrayList<>();
   private Set<String> completedSplits = new HashSet<>();
 
-  public EnumeratorState(int currentValue) {
+  public IntRangeEnumeratorState(int currentValue) {
     this.currentValue = currentValue;
   }
 
@@ -54,11 +54,11 @@ public class EnumeratorState implements Serializable {
     }
   }
 
-  public static EnumeratorState deserialize(byte[] bytes) throws IOException, ClassNotFoundException {
+  public static IntRangeEnumeratorState deserialize(byte[] bytes) throws IOException, ClassNotFoundException {
     try (ByteArrayInputStream byteArrayInputStream = new ByteArrayInputStream(bytes);
         ObjectInputStream in = new ObjectInputStream(byteArrayInputStream)) {
 
-      return (EnumeratorState) in.readObject();
+      return (IntRangeEnumeratorState) in.readObject();
     }
   }
 }

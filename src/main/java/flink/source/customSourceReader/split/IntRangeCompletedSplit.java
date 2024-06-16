@@ -1,4 +1,4 @@
-package flink.app.customSource.split;
+package flink.source.customSourceReader.split;
 
 import org.apache.flink.api.connector.source.SourceEvent;
 

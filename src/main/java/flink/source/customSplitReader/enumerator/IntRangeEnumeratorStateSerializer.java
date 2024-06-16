@@ -1,10 +1,10 @@
-package flink.app.customSource.split;
+package flink.source.customSplitReader.enumerator;
 
 import java.io.IOException;
 
 import org.apache.flink.core.io.SimpleVersionedSerializer;
 
-public class IntRangeSplitSerializer implements SimpleVersionedSerializer<IntRangeSplit> {
+public class IntRangeEnumeratorStateSerializer implements SimpleVersionedSerializer<IntRangeEnumeratorState> {
   private final int CURRENT_VERSION = 1;
 
   @Override
@@ -13,12 +13,12 @@ public class IntRangeSplitSerializer implements SimpleVersionedSerializer<IntRan
   }
 
   @Override
-  public byte[] serialize(IntRangeSplit split) throws IOException {
-    return split.serialize();
+  public byte[] serialize(IntRangeEnumeratorState enumState) throws IOException {
+    return enumState.serialize();
   }
 
   @Override
-  public IntRangeSplit deserialize(int version, byte[] serialized) throws IOException {
+  public IntRangeEnumeratorState deserialize(int version, byte[] serialized) throws IOException {
     if (version > CURRENT_VERSION) {
       throw new IOException(String.format(
           "this deserializer only supports version up to %d, but the bytes are serialized with version %d",
@@ -26,9 +26,9 @@ public class IntRangeSplitSerializer implements SimpleVersionedSerializer<IntRan
     }
 
     try {
-      return IntRangeSplit.deserialize(serialized);
+      return IntRangeEnumeratorState.deserialize(serialized);
     } catch (ClassNotFoundException e) {
-      throw new IOException("class not found during deserizlization", e);
+      throw new IOException("class not found during deserialization", e);
     }
   }
 }

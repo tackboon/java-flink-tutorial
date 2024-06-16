@@ -5,6 +5,7 @@ public class Init {
     // StreamFromData.run();
     // WordCountFromSocket.run(args);
     // PrintIntFromCustomSource.run();
+    // PrintIntFromCustomSplitReader.run();
     // BroadcastFromData.run();
     // BroadcastVariableFromData.run();
     // CustomAggregator.run();

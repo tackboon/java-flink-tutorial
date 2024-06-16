@@ -1,4 +1,4 @@
-package flink.app.customSource.split;
+package flink.source.customSplitReader.split;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

@@ -5,7 +5,7 @@ import org.apache.flink.streaming.api.CheckpointingMode;
 import org.apache.flink.streaming.api.environment.CheckpointConfig;
 import org.apache.flink.streaming.api.environment.StreamExecutionEnvironment;
 
-import flink.app.customSource.source.IntRangeSource;
+import flink.source.customSourceReader.IntRangeSource;
 
 public class PrintIntFromCustomSource {
   public static void run() throws Exception {

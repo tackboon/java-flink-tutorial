@@ -1,10 +1,10 @@
-package flink.app.customSource.enumerator;
+package flink.source.customSourceReader.enumerator;
 
 import java.io.IOException;
 
 import org.apache.flink.core.io.SimpleVersionedSerializer;
 
-public class EnumeratorStateSerializer implements SimpleVersionedSerializer<EnumeratorState> {
+public class IntRangeEnumeratorStateSerializer implements SimpleVersionedSerializer<IntRangeEnumeratorState> {
   private final int CURRENT_VERSION = 1;
 
   @Override
@@ -13,12 +13,12 @@ public class EnumeratorStateSerializer implements SimpleVersionedSerializer<Enum
   }
 
   @Override
-  public byte[] serialize(EnumeratorState enumState) throws IOException {
+  public byte[] serialize(IntRangeEnumeratorState enumState) throws IOException {
     return enumState.serialize();
   }
 
   @Override
-  public EnumeratorState deserialize(int version, byte[] serialized) throws IOException {
+  public IntRangeEnumeratorState deserialize(int version, byte[] serialized) throws IOException {
     if (version > CURRENT_VERSION) {
       throw new IOException(String.format(
           "this deserializer only supports version up to %d, but the bytes are serialized with version %d",
@@ -26,7 +26,7 @@ public class EnumeratorStateSerializer implements SimpleVersionedSerializer<Enum
     }
 
     try {
-      return EnumeratorState.deserialize(serialized);
+      return IntRangeEnumeratorState.deserialize(serialized);
     } catch (ClassNotFoundException e) {
       throw new IOException("class not found during deserialization", e);
     }

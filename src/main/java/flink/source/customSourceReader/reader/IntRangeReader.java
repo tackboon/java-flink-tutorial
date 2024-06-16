@@ -1,4 +1,4 @@
-package flink.app.customSource.reader;
+package flink.source.customSourceReader.reader;
 
 import java.util.List;
 import java.util.concurrent.CompletableFuture;
@@ -10,8 +10,8 @@ import org.apache.flink.core.io.InputStatus;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import flink.app.customSource.split.IntRangeCompletedSplit;
-import flink.app.customSource.split.IntRangeSplit;
+import flink.source.customSourceReader.split.IntRangeCompletedSplit;
+import flink.source.customSourceReader.split.IntRangeSplit;
 
 public class IntRangeReader implements SourceReader<Integer, IntRangeSplit> {
   private static final Logger log = LoggerFactory.getLogger(IntRangeReader.class);

@@ -1,4 +1,4 @@
-package flink.app.customSource.enumerator;
+package flink.source.customSourceReader.enumerator;
 
 import java.util.List;
 
@@ -8,23 +8,23 @@ import org.apache.flink.api.connector.source.SplitEnumeratorContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import flink.app.customSource.split.IntRangeCompletedSplit;
-import flink.app.customSource.split.IntRangeSplit;
+import flink.source.customSourceReader.split.IntRangeCompletedSplit;
+import flink.source.customSourceReader.split.IntRangeSplit;
 
-public class IntRangeEnumerator implements SplitEnumerator<IntRangeSplit, EnumeratorState> {
+public class IntRangeEnumerator implements SplitEnumerator<IntRangeSplit, IntRangeEnumeratorState> {
   private static final Logger log = LoggerFactory.getLogger(IntRangeEnumerator.class);
 
   private final SplitEnumeratorContext<IntRangeSplit> context;
-  private final EnumeratorState state;
+  private final IntRangeEnumeratorState state;
 
   public IntRangeEnumerator(SplitEnumeratorContext<IntRangeSplit> context) {
     log.info("========= creating enumerator");
 
     this.context = context;
-    this.state = new EnumeratorState(0);
+    this.state = new IntRangeEnumeratorState(0);
   }
 
-  public IntRangeEnumerator(SplitEnumeratorContext<IntRangeSplit> context, EnumeratorState state) {
+  public IntRangeEnumerator(SplitEnumeratorContext<IntRangeSplit> context, IntRangeEnumeratorState state) {
     log.info("========= creating enumerator with state, state: ", state);
 
     this.context = context;
@@ -79,7 +79,7 @@ public class IntRangeEnumerator implements SplitEnumerator<IntRangeSplit, Enumer
   }
 
   @Override
-  public EnumeratorState snapshotState(long checkpointId) {
+  public IntRangeEnumeratorState snapshotState(long checkpointId) {
     log.info(String.format("========= snapshoting enumerator state, checkpoint id: %d", checkpointId));
 
     return state;
